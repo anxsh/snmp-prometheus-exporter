@@ -10,4 +10,4 @@ RUN pip install --no-cache-dir -r requirements.txt
 
 COPY . .
 
-CMD [ "python", "./snmp-prometheus-exporter.py", "--config_file", "./config.yml" ]
+CMD [ "python", "./snmp-prometheus-exporter.py", "--config_file", "./config_sample.yml" ]

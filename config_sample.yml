@@ -1,5 +1,5 @@
 targets:
-  - address: nas
+  - address: hostname
     metrics:
       - label: system_status
         help: 'System partition status'
