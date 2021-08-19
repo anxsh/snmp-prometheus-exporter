@@ -2,10 +2,8 @@
 # -*- coding: utf-8 -*-
 
 import argparse
-import requests
 import yaml
 from flask import Flask, Response, request
-#from pysnmp.hlapi import *
 import netsnmp
 
 app = Flask(__name__)
@@ -67,7 +65,7 @@ def metrics():
             responses.append(metric_format.format(metric=metric['label'],
                                                   metric_help=metric['help'],
                                                   metric_type=metric.get('type', 'gauge'),
-                                                  metric_value=metric_value))
+                                                  metric_value=metric_value.decode('utf-8')))
 
     return Response('\n'.join(responses), mimetype='text/plain')
 
