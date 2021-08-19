@@ -1,18 +1,14 @@
 # snmp-prometheus-exporter
 
-# Dependencies
+
+# Build
 
 ```
-sudo apt-get install snmp snmpd python-netsnmp python-yaml
+docker build -t snmp-prometheus-exporter .
 ```
 
-# Installation
-
-Create a config file (based on config_sample.yaml) and put it at `/etc/snmp-prometheus-exporter.yml`
+# Run
 
 ```
-sudo cp snmp-prometheus-exporter.py /usr/local/bin
-sudo cp snmp-prometheus-exporter.service /etc/systemd/system/
-sudo systemctl start snmp-prometheus-exporter.service
-sudo systemctl enable snmp-prometheus-exporter.service
+docker run -it --net=host --rm --name snmp-prometheus-exporter snmp-prometheus-exporter:latest
 ```
