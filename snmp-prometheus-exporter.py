@@ -45,9 +45,9 @@ def hello_world():
 
 
 def get_snmp(snmp_session, oid):
-    varlist = netsnmp.VarList(netsnmp.Varbind(oid, ''))
-    if len(snmp_session.ErrorStr) > 0:
-        return snmp_session.walk(varlist)[0] # only supports single valued fields
+    walk = snmp_session.walk(netsnmp.VarList(netsnmp.Varbind(oid, '')))
+    if len(walk) > 0:
+        return walk[0] # only supports single valued fields
     else:
         return None
 
@@ -64,7 +64,7 @@ def metrics():
         session = netsnmp.Session(Version=2, DestHost=target['address'], Community='public')
         for metric in target['metrics']:
             metric_value = get_snmp(session, metric['oid'])
-            if metric_value:
+            if metric_value != None:
                 responses.append(metric_format.format(metric=metric['label'],
                                                       metric_help=metric['help'],
                                                       metric_type=metric.get('type', 'gauge'),
