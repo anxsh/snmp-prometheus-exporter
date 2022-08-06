@@ -31,7 +31,7 @@ def start_server(port):
 def main():
     args = parser.parse_args()
 
-    config = yaml.load(open(args.config_file))
+    config = yaml.safe_load(open(args.config_file))
     
     app.config['targets'] = config['targets']
 
